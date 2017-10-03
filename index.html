@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <title>在线客服服务</title>
+    <style>
+        *{margin: 0;padding:0;font-family: 微软雅黑}
+        a{text-decoration: none}
+        .top{
+            padding-bottom: 15px;
+            border-bottom: 1px gray dashed;
+        }
+        .yipai{
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 微软雅黑;
+            padding: 10px 0 5px 10px;
+        }
+        .erpai{
+            font-size: 12px;
+            color:darkgrey;
+            padding-left: 10px;
+        }
+        .xuzhi{
+            margin: 0 auto;
+            width: 80px;
+            text-align: center;
+            margin-top: 10px;
+            color: white;
+            font-weight: bold;
+            background: red;
+        }
+        .main{
+            font-size: 12px;
+            padding: 20px 10px;
+            position: relative;
+            margin: 5px 20px;
+
+        }
+        .main p{
+            padding-top: 2px;
+        }
+        .main span{
+            color: red;
+            font-weight: bold;
+        }
+        .pic{
+            height:200px;
+            margin-top: 20px;
+            background: lightgrey;
+        }
+        .zhong{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .pic .zhong img{
+
+            height: 100%;
+        }
+        .mianfei{
+            position: absolute;
+            top:20px;
+            right: 0;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<div class="top">
+    <div class="yipai">24小时在线服务中心</div>
+    <div class="erpai" id="fangwen">2017-09-30</div>
+</div>
+<div>
+    <div class="xuzhi">
+        <p>检测须知</p>
+    </div>
+</div>
+<div class="main">
+    <p>1. 系统全自动检测僵尸</p>
+    <p>2. 一对一在线清理</p>
+    <p>3. 好友 <span>300</span> 人以内 <span>2</span> 元</p>
+    <p>4. 好友 <span>1000</span> 人以内 <span>5</span> 元</p>
+    <p>5. 好友 <span>3000</span> 人以内 <span>10</span> 元</p>
+    <p>6. 好友 <span>5000</span> 人以内 <span>15</span> 元</p>
+    <div class="pic">
+            <div class="zhong">
+                <img src="images/pic3.png" alt="">
+            </div>
+            <p style="color: cornflowerblue;text-align: center">长按二维码添加客服微信</p>
+            <p style="color: red;text-align: center">【进入自助清理程序】</p>
+            <p style="color: gray;text-align: center">早上9:00 ~ 24:00不定时更新二维码</p>
+            <p style="color:cornflowerblue ">（清理死粉效果图）</p>
+            <img src="images/pic2.jpg" style="width: 100%">
+            <img src="images/pic1.jpg" style="width: 100%">
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var obj=document.getElementById("fangwen");
+    var caution=false
+    function setCookie(name,value,expires,path,domain,secure)
+    {
+        var curCookie=name+"="+escape(value) +
+                ((expires)?";expires="+expires.toGMTString() : "") +
+                ((path)?"; path=" + path : "") +
+                ((domain)? "; domain=" + domain : "") +
+                ((secure)?";secure" : "")
+        if(!caution||(name + "=" + escape(value)).length <= 4000)
+        {
+            document.cookie = curCookie
+        }
+        else if(confirm("Cookie exceeds 4KB and will be cut!"))
+        {
+            document.cookie = curCookie
+        }
+    }
+    function getCookie(name)
+    {
+        var prefix = name + "="
+        var cookieStartIndex = document.cookie.indexOf(prefix)
+        if (cookieStartIndex == -1)
+        {
+            return null
+        }
+        var cookieEndIndex=document.cookie.indexOf(";",cookieStartIndex+prefix.length)
+        if(cookieEndIndex == -1)
+        {
+            cookieEndIndex = document.cookie.length
+        }
+        return unescape(document.cookie.substring(cookieStartIndex+prefix.length,cookieEndIndex))
+    }
+    function deleteCookie(name, path, domain)
+    {
+        if(getCookie(name))
+        {
+            document.cookie = name + "=" +
+                    ((path) ? "; path=" + path : "") +
+                    ((domain) ? "; domain=" + domain : "") +
+                    "; expires=Thu, 01-Jan-70 00:00:01 GMT"
+        }
+    }
+    function fixDate(date)
+    {
+        var base=new Date(0)
+        var skew=base.getTime()
+        if(skew>0)
+        {
+            date.setTime(date.getTime()-skew)
+        }
+    }
+    var now=new Date()
+    fixDate(now)
+    now.setTime(now.getTime()+365 * 24 * 60 * 60 * 1000)
+    var visits = getCookie("counter")
+    if(!visits)
+    {
+        visits=1;
+    }
+    else
+    {
+        visits=parseInt(visits)+1;
+    }
+    setCookie("counter", visits, now)
+//    document.write("您是到访的第" + visits + "位用户！")
+//    obj.innerHTML = "2017-09-30" +" &nbsp&nbsp"+ "访问次数" +"&nbsp"+ visits
+</script>
